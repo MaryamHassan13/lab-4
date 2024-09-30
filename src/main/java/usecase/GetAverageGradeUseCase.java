@@ -28,7 +28,12 @@ public final class GetAverageGradeUseCase {
         // Call the API to get all the grades for the course for all your team members
         // TODO Task 3a: Complete the logic of calculating the average course grade for
         //              your team members. Hint: the getGrades method might be useful.
-
+        GetGradeUseCase getGradeUseCase = new GetGradeUseCase(gradeDataBase);
+        for (String member : team.getMembers()) {
+            count++;
+            Grade grade = getGradeUseCase.getGrade(member, course);
+            sum += grade.getGrade();
+        }
         if (count == 0) {
             return 0;
         }
